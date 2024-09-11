@@ -1,4 +1,5 @@
 import "./App.css";
+import Timer from './Timer';
 
 function App() {
   return (
@@ -6,6 +7,9 @@ function App() {
       <header className="App-header">
         <h1>WHACK A MOLE</h1>
       </header>
+
+      <Timer />
+
     </div>
   );
 }
