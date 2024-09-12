@@ -29,7 +29,6 @@ function App() {
         onClose={() => setShowModal(false)}
         onStartNewGame={() => setShowModal(false)}
       />
-
       <Board />
     </div>
   );

@@ -1,12 +1,14 @@
 import hole from "./assets/hole.png"
 import mole from './assets/mole.png';
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
 
 function Board() {
 
   const [moles, setMoles] = useState(new Array(25).fill(false)); //ändrat true = false
+  const [score, setScore] = useState(0);
+
 
 
   const activateRandomMole = () => {
@@ -52,6 +54,15 @@ function Board() {
 
   // klick för att dölja
   const handleClick = (index) => {
+
+    const newMoles = [...moles];
+    if (newMoles[index]) {
+      setScore(score + 1);
+    }
+    newMoles[index] = !newMoles[index];
+    setMoles(newMoles);
+  }
+
     hideMole(index);
   };
 
@@ -61,7 +72,13 @@ function Board() {
   //   setMoles(newMoles);
   // }
 
+
   return (
+    <>
+    <div className="score-panel">
+      <h3 className="name">Elin</h3>
+      <h4 className="score">Score: {score}</h4>
+    </div>
     <div className="board">
       {moles.map((ismole, index) => (
         <img
@@ -73,6 +90,7 @@ function Board() {
         />
       ))}
     </div>
+    </>
   );
 }
 
