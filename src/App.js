@@ -32,7 +32,6 @@ function App() {
         onStartNewGame={() => setShowModal(false)}
       />
 
-      <Timer />
       <Board />
 
 
