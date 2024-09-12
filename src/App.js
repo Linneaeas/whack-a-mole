@@ -31,11 +31,7 @@ function App() {
         onClose={() => setShowModal(false)}
         onStartNewGame={() => setShowModal(false)}
       />
-
-      <Timer />
       <Board />
-
-
     </div>
   );
 }

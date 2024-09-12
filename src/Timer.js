@@ -30,14 +30,14 @@ const Timer = ({ onGameOver }) => { // onGameOver as a prop ( för highScoreModa
 
   return (
     <div className="startpage">
-      <div className="time">
-        {seconds}s
-      </div>
-      <div className="btn-container">
-        <button className="button-primary" onClick={startTimer} disabled={isActive}>
-          Start New Game
-        </button>
-      </div>
+        <div className="btn-container">
+          <button className="button-startnewgame" onClick={startTimer} disabled={isActive}>
+            Start New Game
+          </button>
+        </div>
+        <div className="time">
+        <span className="time-label">Time left</span>: {seconds}s
+        </div>
     </div>
   );
 };
