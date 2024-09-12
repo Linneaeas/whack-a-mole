@@ -12,7 +12,6 @@ function HighScoreModal({ show, onClose, onStartNewGame }) {
         await fetchHighScores();
         await fetchReactionTimes();
       };
-
       fetchData();
 
       // stäng modalen efter 10 sekunder (eller om man klickar X)
@@ -65,29 +64,48 @@ function HighScoreModal({ show, onClose, onStartNewGame }) {
     <div className="modal-backdrop">
       <div className="modal-content">
         <h2>Game Over</h2>
-
-        <div className="high-score-section">
-          <h3>Top 10 High Scores</h3>
-          <ul>
-            {highScores.map((player, index) => (
-              <li key={index}>
-                {index + 1}. {player.playerName}: {player.score} points
-              </li>
-            ))}
-          </ul>
+        <div className="your-score">
+          <span>Player:</span>
+          <span>Score:</span>
+          <span>Reaction time:</span>
+          <p>Simon</p>
+          <p>1500</p>
+          <p>0.6 ms</p>
         </div>
+        <div className="list-container">
+          <div className="high-score-section">
+            <h3>
+              Top 10 <br />
+              Highest Scores
+            </h3>
+            <ul>
+              {highScores.map((player, index) => (
+                <li key={index} className="list-grid">
+                  <span>{index + 1}.</span>
+                  <span className="left">{player.playerName}:</span>
+                  <span className="right">{player.score}p</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="reaction-time-section">
-          <h3>Top 10 Fastest Reaction Times</h3>
-          <ul>
-            {reactionTimes.map((player, index) => (
-              <li key={index}>
-                {index + 1}. {player.playerName}: {player.hitRate}
-              </li>
-            ))}
-          </ul>
+          <div className="reaction-time-section">
+            <h3>
+              Top 10 <br />
+              Fastest Players
+            </h3>
+
+            <ul>
+              {reactionTimes.map((player, index) => (
+                <li key={index} className="list-grid">
+                  <span>{index + 1}.</span>
+                  <span className="left">{player.playerName}:</span>
+                  <span className="right">{player.hitRate} ms</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-
         <div className="modal-actions">
           <button onClick={onStartNewGame}>Start New Game</button>
           <button onClick={onClose}>Close</button>
