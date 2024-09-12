@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
 import Timer from "./Timer";
-
+import ToggleGame from "./ToggleGame";
 import HighScoreModal from "./HighScoreModal";
 
 import Board from "./Board";
+import { isElementType } from "@testing-library/user-event/dist/utils";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -29,6 +30,11 @@ function App() {
         onClose={() => setShowModal(false)}
         onStartNewGame={() => setShowModal(false)}
       />
+
+      <ToggleGame 
+        
+        
+        />
 
       <Board />
     </div>
