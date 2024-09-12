@@ -1,80 +1,100 @@
 // src/components/HighScoreModal.js
-import React, { useEffect, useState } from 'react';
-import './HighScoreModal.css';
+import React, { useEffect, useState } from "react";
+import "./HighScoreModal.css";
 
 function HighScoreModal({ show, onClose, onStartNewGame }) {
-    const [highScores, setHighScores] = useState([]);
-    const [reactionTimes, setReactionTimes] = useState([]);
+  const [highScores, setHighScores] = useState([]);
+  const [reactionTimes, setReactionTimes] = useState([]);
 
-    // fejk data topplista/reaktiontid 
-    useEffect(() => {
-        if (show) {
-            fetchHighScores();
-            fetchReactionTimes();
+  useEffect(() => {
+    if (show) {
+      const fetchData = async () => {
+        await fetchHighScores();
+        await fetchReactionTimes();
+      };
 
-            // stäng modalen efter 10 sekunder (eller om man klickar X)
-            const timer = setTimeout(() => {
-                onClose();
-            }, 10000);
+      fetchData();
 
-            return () => clearTimeout(timer);
-        }
-    }, [show, onClose]);
+      // stäng modalen efter 10 sekunder (eller om man klickar X)
+      const timer = setTimeout(() => {
+        onClose();
+      }, 10000);
 
-    const fetchHighScores = () => {
-        // Byt ut mot data från databasen sen 
-        const scores = [
-            { name: 'Player 1', score: 3000 },
-            { name: 'Player 2', score: 2900 },
-            { name: 'Player 3', score: 2800 },
-        ];
-        setHighScores(scores);
-    };
+      return () => clearTimeout(timer);
+    }
+  }, [show, onClose]);
 
-    const fetchReactionTimes = () => {
-        // Byt ut mot data från databasen sen
-        const times = [
-            { name: 'Player 1', time: '0.85s' },
-            { name: 'Player 2', time: '0.90s' },
-            { name: 'Player 3', time: '0.95s' },
-        ];
-        setReactionTimes(times);
-    };
+  // Fetch high scores from the backend
+  const fetchHighScores = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/leaderboard/highest-scores"
+      );
+      console.log("High Scores Response:", response);
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+      const data = await response.json();
+      console.log("Fetched High Scores Data:", data);
 
-    return show ? (
-        <div className="modal-backdrop">
-            <div className="modal-content">
-                <h2>Game Over</h2>
+      setHighScores(data);
+    } catch (error) {
+      console.error("Error fetching high scores:", error);
+    }
+  };
+  // Fetch fastest hit rates from the backend
+  const fetchReactionTimes = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/leaderboard/fastest-hit-rates"
+      );
+      console.log("Reaction times  Response:", response);
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+      const data = await response.json();
+      console.log("Fetched Reaction times Data:", data);
 
-                <div className="high-score-section">
-                    <h3>Top 10 High Scores</h3>
-                    <ul>
-                        {highScores.map((player, index) => (
-                            <li key={index}>
-                                {index + 1}. {player.name}: {player.score} points
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+      setReactionTimes(data);
+    } catch (error) {
+      console.error("Error fetching reaction times:", error);
+    }
+  };
 
-                <div className="reaction-time-section">
-                    <h3>Top 10 Fastest Reaction Times</h3>
-                    <ul>
-                        {reactionTimes.map((player, index) => (
-                            <li key={index}>
-                                {index + 1}. {player.name}: {player.time}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+  return show ? (
+    <div className="modal-backdrop">
+      <div className="modal-content">
+        <h2>Game Over</h2>
 
-                <div className="modal-actions">
-                    <button onClick={onStartNewGame}>Start New Game</button>
-                    <button onClick={onClose}>Close</button>
-                </div>
-            </div>
+        <div className="high-score-section">
+          <h3>Top 10 High Scores</h3>
+          <ul>
+            {highScores.map((player, index) => (
+              <li key={index}>
+                {index + 1}. {player.playerName}: {player.score} points
+              </li>
+            ))}
+          </ul>
         </div>
-    ) : null;
+
+        <div className="reaction-time-section">
+          <h3>Top 10 Fastest Reaction Times</h3>
+          <ul>
+            {reactionTimes.map((player, index) => (
+              <li key={index}>
+                {index + 1}. {player.playerName}: {player.hitRate}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="modal-actions">
+          <button onClick={onStartNewGame}>Start New Game</button>
+          <button onClick={onClose}>Close</button>
+        </div>
+      </div>
+    </div>
+  ) : null;
 }
 
 export default HighScoreModal;
