@@ -1,5 +1,6 @@
 import "./App.css";
 import Timer from './Timer';
+import Board from './Board'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       </header>
 
       <Timer />
+      <Board />
 
     </div>
   );
