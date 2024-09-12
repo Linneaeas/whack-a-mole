@@ -31,6 +31,7 @@ function App() {
         onStartNewGame={() => setShowModal(false)}
       />
 
+
       <ToggleGame 
         
         
