@@ -27,10 +27,9 @@ function ToggleGame(){
       {isGameStarted ? (
         <div>
           <Timer onGameOver={handleGameOver} />
-          
         </div> 
       ):(
-        <p> </p>// sätt in vad som händer om det inte är startat
+      
       )}
     </div>
   );

@@ -5,7 +5,7 @@ import ToggleGame from "./ToggleGame";
 import HighScoreModal from "./HighScoreModal";
 
 import Board from "./Board";
-import { isElementType } from "@testing-library/user-event/dist/utils";
+
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -32,11 +32,7 @@ function App() {
       />
 
 
-      <ToggleGame 
-        
-        
-        />
-
+      <ToggleGame />
       <Board />
     </div>
   );
