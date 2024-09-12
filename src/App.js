@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Timer from "./Timer";
-import ToggleGame from "./ToggleGame";
 import HighScoreModal from "./HighScoreModal";
-
 import Board from "./Board";
-import { isElementType } from "@testing-library/user-event/dist/utils";
 
 function App() {
+  const [isGameStarted, setGameStarted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // funktion som triggar när timer är 0
   const handleGameOver = () => {
     setShowModal(true);
+    setGameStarted(false); // Stop the game when time runs out
+  };
+
+  const startGame = () => {
+    setGameStarted(true);
+    setShowModal(false); // Close modal when starting a new game
   };
 
   return (
@@ -21,23 +24,23 @@ function App() {
         <h1>WHACK A MOLE</h1>
       </header>
 
-      {/* pass prop, timer */}
-      <Timer onGameOver={handleGameOver} />
-
-      {/* visar HighScoreModal när tiden är ute */}
-      <HighScoreModal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        onStartNewGame={() => setShowModal(false)}
-      />
-
-
-      <ToggleGame 
-        
-        
-        />
-
-      <Board />
+      {isGameStarted ? (
+        <div>
+          <Timer onGameOver={handleGameOver} isGameStarted={isGameStarted} />
+          <Board />
+        </div>
+      ) : (
+        <div>
+          <button onClick={startGame}>
+            Start Game Temp button. write name page ska va har
+          </button>
+          <HighScoreModal
+            show={showModal}
+            onClose={() => setShowModal(false)}
+            onStartNewGame={() => setShowModal(false)}
+          />
+        </div>
+      )}
     </div>
   );
 }
