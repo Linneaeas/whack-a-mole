@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import "./App.css";
 import Timer from './Timer';
+
 import HighScoreModal from "./HighScoreModal";
+
+import Board from './Board'
+
 
 function App() {
 
@@ -27,6 +31,10 @@ function App() {
         onClose={() => setShowModal(false)}
         onStartNewGame={() => setShowModal(false)}
       />
+
+      <Timer />
+      <Board />
+
 
     </div>
   );
