@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = () => {
-  const [seconds, setSeconds] = useState(60);
+// ändrade Timer.js så när 60 (10) sekunder har gått så dyker modalen upp och stängs efter 10 sekunder (3 ändringar)
+
+const Timer = ({ onGameOver }) => { // onGameOver as a prop ( för highScoreModal)
+  const [seconds, setSeconds] = useState(10);
   const [isActive, setIsActive] = useState(false);
 
   function startTimer() {
@@ -18,11 +20,13 @@ const Timer = () => {
       }, 1000);
     } else if (seconds === 0) {
       clearInterval(interval);
-      setSeconds(60);
+      setSeconds(10);
       setIsActive(false);
+
+      onGameOver(); // (highscore) when timer reaches 0
     }
     return () => clearInterval(interval);
-  }, [isActive, seconds]);
+  }, [isActive, seconds, onGameOver]); // Pass onGameOver
 
   return (
     <div className="startpage">
