@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./App.css";
-import Timer from './Timer';
+import Timer from "./Timer";
 
 import HighScoreModal from "./HighScoreModal";
 
-import Board from './Board'
-
+import Board from "./Board";
 
 function App() {
-
   const [showModal, setShowModal] = useState(false);
 
   // funktion som triggar när timer är 0
@@ -32,10 +30,7 @@ function App() {
         onStartNewGame={() => setShowModal(false)}
       />
 
-      <Timer />
       <Board />
-
-
     </div>
   );
 }
