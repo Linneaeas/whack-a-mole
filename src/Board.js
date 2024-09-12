@@ -1,18 +1,15 @@
-import hole from "./assets/hole.png"
-import mole from './assets/mole.png';
-import './App.css';
-import { useState } from 'react';
-import React from 'react';
+import hole from "./assets/hole.png";
+import mole from "./assets/mole.png";
+import "./App.css";
+import { useState, useEffect } from "react";
+import React from "react";
 
 function Board() {
-
   const [moles, setMoles] = useState(new Array(25).fill(false)); //ändrat true = false
   const [score, setScore] = useState(0);
 
-
-
   const activateRandomMole = () => {
-    const activeMolesCount = moles.filter(isMole => isMole).length;
+    const activeMolesCount = moles.filter((isMole) => isMole).length;
 
     // Kolla så det inte ör mer än 3 moles uppe samtidigt
     if (activeMolesCount < 3) {
@@ -28,7 +25,7 @@ function Board() {
       // mole uppe mellan 1 and 4 sekunder
       const hideTime = Math.random() * 3000 + 1000;
 
-      // efter en viss tid så försvinner den. 
+      // efter en viss tid så försvinner den.
       setTimeout(() => {
         hideMole(randomIndex);
       }, hideTime);
@@ -54,16 +51,13 @@ function Board() {
 
   // klick för att dölja
   const handleClick = (index) => {
-
     const newMoles = [...moles];
     if (newMoles[index]) {
       setScore(score + 1);
     }
-    newMoles[index] = !newMoles[index];
+    // newMoles[index] = !newMoles[index]; //Borttaget efter issue efter resolvning conflict
+    newMoles[index] = false; // Ensure the mole is hidden after being clicked
     setMoles(newMoles);
-  }
-
-    hideMole(index);
   };
 
   // const handleClick = (index) => {
@@ -72,24 +66,23 @@ function Board() {
   //   setMoles(newMoles);
   // }
 
-
   return (
     <>
-    <div className="score-panel">
-      <h3 className="name">Elin</h3>
-      <h4 className="score">Score: {score}</h4>
-    </div>
-    <div className="board">
-      {moles.map((ismole, index) => (
-        <img
-          key={index}
-          src={ismole ? mole : hole}
-          alt={ismole ? 'A mole' : 'A hole'}
-          onClick={() => handleClick(index)}
-          style={{ cursor: 'pointer' }}
-        />
-      ))}
-    </div>
+      <div className="score-panel">
+        <h3 className="name">Elin</h3>
+        <h4 className="score">Score: {score}</h4>
+      </div>
+      <div className="board">
+        {moles.map((ismole, index) => (
+          <img
+            key={index}
+            src={ismole ? mole : hole}
+            alt={ismole ? "A mole" : "A hole"}
+            onClick={() => handleClick(index)}
+            style={{ cursor: "pointer" }}
+          />
+        ))}
+      </div>
     </>
   );
 }
