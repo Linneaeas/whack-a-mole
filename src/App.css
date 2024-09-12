@@ -5,14 +5,17 @@
     display: flex;
     justify-content: center;
   }
-  
-  
-  
+
+  .App-header {
+    position: absolute;
+    left: 20px;
+  }
+
   .time {
     font-size: 3rem;
     padding: 2rem;
   }
-  
+
   .button-primary {
     padding: .6rem 1.5rem;
     margin: .4rem;
@@ -21,4 +24,21 @@
     font-weight: 600;
     font-size: .8rem;
     border-style: groove;
+  }
+
+  .board {
+    background-color: #7cf339;
+    display: grid;
+    padding: 20px;
+    margin: 0 auto;
+    grid-template-columns: repeat(5, 1fr);
+    border: 5px solid black;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 10px;
+  }
+
+  img {
+    width: 90px;
+    height: 90px;
   }
