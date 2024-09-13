@@ -4,6 +4,7 @@
   background-color: #ddf6ab;
   display: flex;
   flex-direction: column;
+<<<<<<< Updated upstream
   align-items: center;
   position: relative;
 }
@@ -12,6 +13,16 @@
   position: absolute;
   left: 20px;
   font-size: 0.9rem;
+=======
+  justify-content: center;
+}
+
+
+.startpage {
+  text-align: center;
+  justify-content: center; 
+  align-self: center;
+>>>>>>> Stashed changes
 }
 
 .time {
