@@ -1,9 +1,5 @@
-<<<<<<< Updated upstream
 import React, { useState, useEffect } from "react";
-=======
-import React, { useState, useEffect } from 'react';
-import './App.css';
->>>>>>> Stashed changes
+import "./App.css";
 
 // ändrade Timer.js så när 60 (10) sekunder har gått så dyker modalen upp och stängs efter 10 sekunder (3 ändringar)
 
