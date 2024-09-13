@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-<<<<<<< Updated upstream
 import Timer from "./Timer";
+import Signup from "./Signup";
 import HighScoreModal from "./HighScoreModal";
 import Board from "./Board";
-=======
-import Timer from './Timer';
-import Signup from "./Signup";
->>>>>>> Stashed changes
 
 function App() {
   const [isGameStarted, setGameStarted] = useState(false);
@@ -28,8 +24,7 @@ function App() {
       <header className="App-header">
         <h1>WHACK A MOLE</h1>
       </header>
-<<<<<<< Updated upstream
-
+      <Signup />
 
       {isGameStarted ? (
         <div>
@@ -48,11 +43,6 @@ function App() {
           />
         </div>
       )}
-=======
-      <Signup />
-      <Timer />
->>>>>>> Stashed changes
-
     </div>
   );
 }
