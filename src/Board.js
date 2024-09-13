@@ -4,7 +4,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import React from "react";
 
-function Board() {
+function Board({ isGameStarted }) {
   const [moles, setMoles] = useState(new Array(25).fill(false)); //ändrat true = false
   const [score, setScore] = useState(0);
 
@@ -42,12 +42,14 @@ function Board() {
 
   // random när dem en mole dyker upp
   useEffect(() => {
-    const moleInterval = setInterval(() => {
-      activateRandomMole();
-    }, Math.random() * 2000 + 1000); // 1-3 sekunder ( kan ta bort? )
+    if (isGameStarted) {
+      const moleInterval = setInterval(() => {
+        activateRandomMole();
+      }, Math.random() * 2000 + 1000); // 1-3 sekunder ( kan ta bort? )
 
-    return () => clearInterval(moleInterval);
-  }, [moles]);
+      return () => clearInterval(moleInterval);
+    }
+  }, [isGameStarted]);
 
   // klick för att dölja
   const handleClick = (index) => {

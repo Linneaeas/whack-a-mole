@@ -6,42 +6,25 @@ import "./App.css";
 const Timer = ({ onGameOver, isGameStarted }) => {
   // onGameOver as a prop ( för highScoreModal)
   const [seconds, setSeconds] = useState(10);
-  const [isActive, setIsActive] = useState(false);
-
-  function startTimer() {
-    setIsActive(true);
-  }
+  // const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     let interval = null;
-    if (isActive && seconds > 0) {
+    if (isGameStarted && seconds > 0) {
       interval = setInterval(() => {
         setSeconds((seconds) => seconds - 1);
       }, 1000);
     } else if (seconds === 0) {
       clearInterval(interval);
-      setSeconds(10);
-      setIsActive(false);
-
-      onGameOver(); // (highscore) when timer reaches 0
+      onGameOver(); // Trigger game over when timer hits 0
+      setSeconds(10); // Reset timer for the next game
     }
     return () => clearInterval(interval);
-  }, [isActive, seconds, onGameOver]); // Pass onGameOver
+  }, [isGameStarted, seconds, onGameOver]);
 
   return (
-    <div className="startpage">
-      <div className="btn-container">
-        <button
-          className="button-startnewgame"
-          onClick={startTimer}
-          disabled={isActive}
-        >
-          Start New Game
-        </button>
-      </div>
-      <div className="time">
-        <span className="time-label">Time left</span>: {seconds}s
-      </div>
+    <div className="time">
+      <span className="time-label">Time left</span>: {seconds}s
     </div>
   );
 };
