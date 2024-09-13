@@ -28,6 +28,7 @@ function ToggleGame() {
       {isGameStarted ? (
         <div>
           <Timer onGameOver={handleGameOver} />
+
           <Board />
         </div>
       ) : (
@@ -35,6 +36,10 @@ function ToggleGame() {
           <button onClick={startGame}>Start Game</button>
           {showModal && <p>Game Over! Try again?</p>}
         </div>
+
+        </div> 
+      ):(
+      
       )}
     </div>
   );

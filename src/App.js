@@ -24,6 +24,7 @@ function App() {
         <h1>WHACK A MOLE</h1>
       </header>
 
+
       {isGameStarted ? (
         <div>
           <Timer onGameOver={handleGameOver} isGameStarted={isGameStarted} />
@@ -41,6 +42,7 @@ function App() {
           />
         </div>
       )}
+
     </div>
   );
 }
