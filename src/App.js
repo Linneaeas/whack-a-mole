@@ -6,12 +6,14 @@ import ToggleGame from "./ToggleGame";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Signup />} />
-        <Route path="/game" element={<ToggleGame />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Signup />} />
+          <Route path="/game" element={<ToggleGame />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

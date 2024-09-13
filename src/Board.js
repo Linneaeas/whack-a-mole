@@ -3,6 +3,7 @@ import mole from "./assets/mole.png";
 import "./App.css";
 import { useState, useEffect } from "react";
 import React from "react";
+import "./Board.css";
 
 function Board({ isGameStarted }) {
   const [moles, setMoles] = useState(new Array(25).fill(false)); //ändrat true = false

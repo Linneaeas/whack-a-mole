@@ -1,92 +1,13 @@
 .App {
   text-align: center;
-  height: 100vh;
   background-color: #ddf6ab;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-}
-
-.App-header {
-  position: absolute;
-  left: 20px;
-  font-size: 0.9rem;
-  justify-content: center;
 }
 
 .startpage {
   text-align: center;
   justify-content: center;
   align-self: center;
-}
-
-.time {
-  font-size: 1.8rem;
-  padding: 2rem;
-  margin-top: 45px;
-}
-
-.time-label {
-  font-weight: 600;
-}
-
-.btn-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-}
-
-.button-startnewgame {
-  padding: 0.6rem 1.5rem;
-  margin: 0.4rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 2rem;
-  border: none;
-  border-radius: 24px;
-  background-color: #7cf339;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* board */
-.board {
-  background-color: #7cf339;
-  display: grid;
-  padding: 20px;
-  margin: 0 auto;
-  grid-template-columns: repeat(5, 1fr);
-  border: 5px solid black;
-  border-radius: 10px;
-  position: absolute;
-  bottom: 10px;
-}
-
-img {
-  width: 90px;
-  height: 90px;
-}
-
-/* score panel */
-.score-panel {
-  position: absolute;
-  right: 70px;
-  top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.score-panel .name {
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-bottom: 0;
-}
-
-.score-panel .score {
-  font-weight: 400;
-  font-size: 1.2rem;
-  margin-top: 0.2rem;
 }
