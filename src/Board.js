@@ -9,6 +9,12 @@ function Board({ isGameStarted }) {
   const [moles, setMoles] = useState(new Array(25).fill(false)); //ändrat true = false
   const [score, setScore] = useState(0);
 
+  useEffect(()=>{
+    if(isGameStarted){
+      setScore(0);
+    }
+  }, [isGameStarted]);
+
   const activateRandomMole = () => {
     const activeMolesCount = moles.filter((isMole) => isMole).length;
 
