@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../App/App";
 import "./ToggleGame.css";
 import Timer from "../Timer/Timer";
 import HighScoreModal from "../HighScoreModal/HighScoreModal";
 import Board from "../Board/Board";
 import ScorePanel from "../ScorePanel/ScorePanel";
+import { UserContext } from "../UserContext.js";
 
 function ToggleGame() {
   const [isGameStarted, setGameStarted] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [score, setScore] = useState(0); //Score flyttad upp i hierarking for att kunna skucka ner till children: Board och ScorePanel.
+  const { name } = useContext(UserContext); //Samma sak med user namnet
 
   const handleGameOver = () => {
     setShowModal(true);
@@ -34,8 +36,8 @@ function ToggleGame() {
           </button>
         </div>
         <Timer onGameOver={handleGameOver} isGameStarted={isGameStarted} />
-        <ScorePanel score={score} />{" "}
-        {/* Skickar score (och set score nedan) as prop */}
+        <ScorePanel score={score} name={name} />{" "}
+        {/* Skickar score (och set score) as prop */}
         <Board
           isGameStarted={isGameStarted}
           score={score}
@@ -47,6 +49,8 @@ function ToggleGame() {
           show={showModal}
           onClose={() => setShowModal(false)}
           onStartNewGame={() => setShowModal(false)}
+          score={score}
+          name={name}
         />
       )}
     </div>

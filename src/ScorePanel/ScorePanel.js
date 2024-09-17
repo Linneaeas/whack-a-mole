@@ -1,11 +1,8 @@
 import "../App/App.css";
-import React, { useContext } from "react";
+import React from "react";
 import "./ScorePanel.css";
-import { UserContext } from "../UserContext.js";
 
-function ScorePanel({ score }) {
-  const { name } = useContext(UserContext);
-
+function ScorePanel({ score, name }) {
   return (
     <div className="score-panel">
       <h3 className="name">{name}</h3>
