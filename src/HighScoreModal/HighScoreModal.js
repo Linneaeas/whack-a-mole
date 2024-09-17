@@ -1,7 +1,7 @@
 // src/components/HighScoreModal.js
 import React, { useEffect, useState, useContext } from "react";
 import "./HighScoreModal.css";
-import { UserContext } from "./UserContext.js";
+import { UserContext } from '../UserContext';
 
 function HighScoreModal({ show, onClose, onStartNewGame }) {
   const [highScores, setHighScores] = useState([]);

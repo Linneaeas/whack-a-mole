@@ -1,12 +1,11 @@
 .toggle-game {
-  text-align: center;
+  /*text-align: center;*/
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .toggle-game-header {
-  left: 20px;
   font-size: 0.9rem;
 }
 

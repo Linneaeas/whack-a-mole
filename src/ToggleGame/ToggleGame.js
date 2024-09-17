@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "../App/App";
 import "./ToggleGame.css";
-import Timer from "./Timer";
-import HighScoreModal from "./HighScoreModal";
-import Board from "./Board";
+import Timer from "../Timer/Timer";
+import HighScoreModal from "../HighScoreModal/HighScoreModal";
+import Board from "../Board/Board";
 
 function ToggleGame() {
   const [isGameStarted, setGameStarted] = useState(false);
@@ -11,27 +11,24 @@ function ToggleGame() {
 
   const handleGameOver = () => {
     setShowModal(true);
-    setGameStarted(false); // Stop the game when time runs out
+    setGameStarted(false);
   };
 
   const startGame = () => {
     setGameStarted(true);
-    setShowModal(false); // Close modal when starting a new game
+    setShowModal(false);
   };
   return (
     <div className="toggle-game">
       <header className="toggle-game-header">
         <h1>WHACK A MOLE</h1>
       </header>
-
-      {/* Game UI - Always Visible */}
       <div className="components-container">
-        {/* Start New Game Button - Visible, but disabled when the game is started */}
         <div className="btn-container">
           <button
             className="button-startnewgame"
             onClick={startGame}
-            disabled={isGameStarted} // Disable button during game
+            disabled={isGameStarted}
           >
             Start New Game
           </button>
@@ -39,8 +36,6 @@ function ToggleGame() {
         <Timer onGameOver={handleGameOver} isGameStarted={isGameStarted} />
         <Board isGameStarted={isGameStarted} />
       </div>
-
-      {/* Show High Score Modal when the game ends */}
       {showModal && (
         <HighScoreModal
           show={showModal}

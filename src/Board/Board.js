@@ -1,10 +1,10 @@
-import hole from "./assets/hole.png";
-import mole from "./assets/mole.png";
-import "./App.css";
+import hole from "../assets/hole.png";
+import mole from "../assets/mole.png";
+import "../App/App.css";
 import { useState, useEffect } from "react";
 import React, { useContext } from "react";
 import "./Board.css";
-import { UserContext } from "./UserContext.js";
+import { UserContext } from "../UserContext.js";
 
 function Board({ isGameStarted }) {
   const [moles, setMoles] = useState(new Array(25).fill(false)); //ändrat true = false
