@@ -11,6 +11,12 @@ function Board({ isGameStarted }) {
   const [score, setScore] = useState(0);
   const { name } = useContext(UserContext);
 
+  useEffect(()=>{
+    if(isGameStarted){
+      setScore(0);
+    }
+  }, [isGameStarted]);
+
   const activateRandomMole = () => {
     const activeMolesCount = moles.filter((isMole) => isMole).length;
 
