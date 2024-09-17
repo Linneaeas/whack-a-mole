@@ -12,18 +12,29 @@ function Signup() {
   };
 
   const handleNext = () => {
-    setName(inputValue);
-    navigate("/game");
+    if (inputValue.trim()) {
+      setName(inputValue);
+      navigate("/game");
+    }
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleNext();
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" value={inputValue} onChange={handleChange} />
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleChange}
+          autoFocus
+        />
       </label>
 
-      <button type="button" onClick={handleNext}>
+      <button type="submit" onClick={handleNext}>
         Next
       </button>
     </form>
