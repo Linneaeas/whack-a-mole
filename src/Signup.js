@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Outlet, Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "./UserContext.js";
 
 function Signup() {
   const [inputValue, setInputValue] = useState("");
+  const { setName } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
+  };
+
+  const handleNext = () => {
+    setName(inputValue);
+    navigate("/game");
   };
 
   return (
@@ -14,9 +22,10 @@ function Signup() {
         Name:
         <input type="text" value={inputValue} onChange={handleChange} />
       </label>
-      <Link to="/game">
-        <button type="button">Next</button>
-      </Link>
+
+      <button type="button" onClick={handleNext}>
+        Next
+      </button>
     </form>
   );
 }

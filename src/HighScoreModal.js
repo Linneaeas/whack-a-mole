@@ -1,10 +1,12 @@
 // src/components/HighScoreModal.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./HighScoreModal.css";
+import { UserContext } from "./UserContext.js";
 
 function HighScoreModal({ show, onClose, onStartNewGame }) {
   const [highScores, setHighScores] = useState([]);
   const [reactionTimes, setReactionTimes] = useState([]);
+  const { name } = useContext(UserContext);
 
   useEffect(() => {
     if (show) {
@@ -68,7 +70,7 @@ function HighScoreModal({ show, onClose, onStartNewGame }) {
           <span>Player:</span>
           <span>Score:</span>
           <span>Reaction time:</span>
-          <p>Simon</p>
+          <p>{name}</p>
           <p>1500</p>
           <p>0.6 ms</p>
         </div>
@@ -107,7 +109,6 @@ function HighScoreModal({ show, onClose, onStartNewGame }) {
           </div>
         </div>
         <div className="modal-actions">
-          <button onClick={onStartNewGame}>Start New Game</button>
           <button onClick={onClose}>Close</button>
         </div>
       </div>
