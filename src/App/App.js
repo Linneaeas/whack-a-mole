@@ -8,6 +8,9 @@ import ToggleGame from "../ToggleGame/ToggleGame.js";
 function App() {
   return (
     <div className="App">
+      <header className="app-header">
+        <h1>WHACK A MOLE</h1>
+      </header>
       <BrowserRouter>
         {" "}
         <UserProvider>

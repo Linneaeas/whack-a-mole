@@ -2,20 +2,16 @@ import hole from "../assets/hole.png";
 import mole from "../assets/mole.png";
 import "../App/App.css";
 import { useState, useEffect } from "react";
-import React, { useContext } from "react";
 import "./Board.css";
-import { UserContext } from "../UserContext.js";
 
-function Board({ isGameStarted }) {
+function Board({ isGameStarted, score, setScore }) {
   const [moles, setMoles] = useState(new Array(25).fill(false)); //ändrat true = false
-  const [score, setScore] = useState(0);
-  const { name } = useContext(UserContext);
 
-  useEffect(()=>{
-    if(isGameStarted){
+  useEffect(() => {
+    if (isGameStarted) {
       setScore(0);
     }
-  }, [isGameStarted]);
+  }, [isGameStarted, setScore]);
 
   const activateRandomMole = () => {
     const activeMolesCount = moles.filter((isMole) => isMole).length;
@@ -78,11 +74,7 @@ function Board({ isGameStarted }) {
   // }
 
   return (
-    <>
-      <div className="score-panel">
-        <h3 className="name">{name}</h3>
-        <h4 className="score">Score: {score}</h4>
-      </div>
+    <div className="Board-container">
       <div className="board">
         {moles.map((ismole, index) => (
           <img
@@ -94,7 +86,7 @@ function Board({ isGameStarted }) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,3 +1,7 @@
+.Board-container {
+  display: flex;
+}
+
 .board {
   background-color: #7cf339;
   display: grid;
@@ -12,23 +16,4 @@
 img {
   width: 90px;
   height: 90px;
-}
-
-.score-panel {
-  position: absolute;
-  right: 70px;
-  top: 70px;
-  display: flex;
-}
-
-.score-panel .name {
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-bottom: 0;
-}
-
-.score-panel .score {
-  font-weight: 400;
-  font-size: 1.2rem;
-  margin-top: 0.2rem;
 }

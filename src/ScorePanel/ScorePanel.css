@@ -1,0 +1,14 @@
+.score-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.score-panel .name {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.score-panel .score {
+  font-weight: 400;
+  font-size: 1.2rem;
+}

@@ -6,6 +6,9 @@
   align-items: center;
   min-height: 100vh;
 }
+.app-header {
+  font-size: 0.9rem;
+}
 
 .startpage {
   text-align: center;
