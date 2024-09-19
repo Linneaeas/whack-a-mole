@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./HighScoreModal.css";
 
-function HighScoreModal({ show, onClose, name, score, hitRate }) {
-  const [highScores] = useState([]);
-  const [reactionTimes] = useState([]);
-
+function HighScoreModal({
+  show,
+  onClose,
+  name,
+  score,
+  hitRate,
+  highScores,
+  reactionTimes,
+}) {
   if (!show) return null;
 
   return (
