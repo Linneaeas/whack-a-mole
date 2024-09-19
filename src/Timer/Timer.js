@@ -24,7 +24,9 @@ const Timer = ({ onGameOver, isGameStarted }) => {
 
   return (
     <div className="time">
-      <span className="time-label">Time left</span>: {seconds}s
+      <span className="label">Time left:</span>
+
+      <span className="data">{seconds}s</span>
     </div>
   );
 };

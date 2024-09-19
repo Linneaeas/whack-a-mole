@@ -5,8 +5,12 @@ import "./ScorePanel.css";
 function ScorePanel({ score, name }) {
   return (
     <div className="score-panel">
-      <h3 className="name">{name}</h3>
-      <h4 className="score">Score: {score}</h4>
+      <span className="label">
+        Player: <span className="data">{name}</span>
+      </span>
+      <span className="label">
+        Score: <span className="data">{score}</span>
+      </span>
     </div>
   );
 }
