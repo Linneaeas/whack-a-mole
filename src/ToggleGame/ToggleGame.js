@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "../App/App";
 import "./ToggleGame.css";
 import Timer from "../Timer/Timer";
@@ -10,9 +10,19 @@ import { UserContext } from "../UserContext.js";
 function ToggleGame() {
   const [isGameStarted, setGameStarted] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [score, setScore] = useState(0); // Score
-  const [hitRate, setHitRate] = useState(0); // Average hit rate
-  const { name } = useContext(UserContext); // User name
+  const [score, setScore] = useState(0);
+  const [hitRate, setHitRate] = useState(0);
+  const { name } = useContext(UserContext);
+
+  useEffect(() => {
+    if (showModal) {
+      console.log("useEffect triggered");
+      const timer = setTimeout(() => {
+        setShowModal(false);
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [showModal]);
 
   const handleGameOver = () => {
     setShowModal(true);
@@ -23,7 +33,7 @@ function ToggleGame() {
     setGameStarted(true);
     setShowModal(false);
     setScore(0);
-    setHitRate(0); // Reset hit rate for new game
+    setHitRate(0);
   };
 
   return (
@@ -44,7 +54,7 @@ function ToggleGame() {
           isGameStarted={isGameStarted}
           score={score}
           setScore={setScore}
-          setHitRate={setHitRate} // Pass setHitRate to Board
+          setHitRate={setHitRate}
         />
       </div>
       {showModal && (
@@ -53,7 +63,7 @@ function ToggleGame() {
           onClose={() => setShowModal(false)}
           onStartNewGame={startGame}
           score={score}
-          hitRate={hitRate} // Pass hit rate to the modal
+          hitRate={hitRate}
           name={name}
         />
       )}

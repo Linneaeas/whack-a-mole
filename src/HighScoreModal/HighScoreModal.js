@@ -1,73 +1,13 @@
-// src/components/HighScoreModal.js
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./HighScoreModal.css";
 
-function HighScoreModal({
-  show,
-  onClose,
-  onStartNewGame,
-  name,
-  score,
-  hitRate,
-}) {
-  const [highScores, setHighScores] = useState([]);
-  const [reactionTimes, setReactionTimes] = useState([]);
+function HighScoreModal({ show, onClose, name, score, hitRate }) {
+  const [highScores] = useState([]);
+  const [reactionTimes] = useState([]);
 
-  useEffect(() => {
-    if (show) {
-      const fetchData = async () => {
-        await fetchHighScores();
-        await fetchReactionTimes();
-      };
-      fetchData();
+  if (!show) return null;
 
-      // stäng modalen efter 10 sekunder (eller om man klickar X)
-      const timer = setTimeout(() => {
-        onClose();
-      }, 10000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [show, onClose]);
-
-  // Fetch high scores from the backend
-  const fetchHighScores = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:3001/leaderboard/highest-scores"
-      );
-      console.log("High Scores Response:", response);
-      if (!response.ok) {
-        throw new Error("Network response was not ok.");
-      }
-      const data = await response.json();
-      console.log("Fetched High Scores Data:", data);
-
-      setHighScores(data);
-    } catch (error) {
-      console.error("Error fetching high scores:", error);
-    }
-  };
-  // Fetch fastest hit rates from the backend
-  const fetchReactionTimes = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:3001/leaderboard/fastest-hit-rates"
-      );
-      console.log("Reaction times  Response:", response);
-      if (!response.ok) {
-        throw new Error("Network response was not ok.");
-      }
-      const data = await response.json();
-      console.log("Fetched Reaction times Data:", data);
-
-      setReactionTimes(data);
-    } catch (error) {
-      console.error("Error fetching reaction times:", error);
-    }
-  };
-
-  return show ? (
+  return (
     <div className="modal-backdrop">
       <div className="modal-content">
         <h2>Game Over</h2>
@@ -101,7 +41,6 @@ function HighScoreModal({
               Top 10 <br />
               Fastest Players
             </h3>
-
             <ul>
               {reactionTimes.map((player, index) => (
                 <li key={index} className="list-grid">
@@ -118,7 +57,7 @@ function HighScoreModal({
         </div>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default HighScoreModal;
