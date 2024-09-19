@@ -2,7 +2,14 @@
 import React, { useEffect, useState } from "react";
 import "./HighScoreModal.css";
 
-function HighScoreModal({ show, onClose, onStartNewGame, name, score }) {
+function HighScoreModal({
+  show,
+  onClose,
+  onStartNewGame,
+  name,
+  score,
+  hitRate,
+}) {
   const [highScores, setHighScores] = useState([]);
   const [reactionTimes, setReactionTimes] = useState([]);
 
@@ -70,7 +77,7 @@ function HighScoreModal({ show, onClose, onStartNewGame, name, score }) {
           <span>Reaction time:</span>
           <p>{name}</p>
           <p>{score}</p>
-          <p>0.6 ms</p>
+          <p>{hitRate.toFixed(2)} ms</p>
         </div>
         <div className="list-container">
           <div className="high-score-section">
