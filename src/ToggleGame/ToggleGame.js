@@ -53,7 +53,6 @@ function ToggleGame() {
     } catch (error) {
       console.error("Error submitting player data:", error);
     }
-
     setShowModal(true);
     setGameStarted(false);
   };

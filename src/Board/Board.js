@@ -8,15 +8,14 @@ function Board({ isGameStarted, score, setScore, setHitRate }) {
   const [moles, setMoles] = useState(new Array(25).fill(false));
   const [moleAppearTime, setMoleAppearTime] = useState(
     new Array(25).fill(null)
-  ); // Track when each mole appears
-  const [reactionTimes, setReactionTimes] = useState([]); // Store reaction times
+  );
+  const [reactionTimes, setReactionTimes] = useState([]);
 
-  // Reset score, reaction times, and mole appearance times when the game starts
   useEffect(() => {
     if (isGameStarted) {
       setScore(0);
       setReactionTimes([]);
-      setMoleAppearTime(new Array(25).fill(null)); // Reset mole appearance times
+      setMoleAppearTime(new Array(25).fill(null));
     }
   }, [isGameStarted, setScore]);
 
@@ -34,7 +33,7 @@ function Board({ isGameStarted, score, setScore, setHitRate }) {
       setMoles(newMoles);
 
       const newMoleAppearTime = [...moleAppearTime];
-      newMoleAppearTime[randomIndex] = Date.now(); // Record the time mole appears
+      newMoleAppearTime[randomIndex] = Date.now();
       setMoleAppearTime(newMoleAppearTime);
 
       const hideTime = Math.random() * 3000 + 1000;
@@ -53,11 +52,10 @@ function Board({ isGameStarted, score, setScore, setHitRate }) {
     });
 
     const newMoleAppearTime = [...moleAppearTime];
-    newMoleAppearTime[index] = null; // Reset mole appearance time
+    newMoleAppearTime[index] = null;
     setMoleAppearTime(newMoleAppearTime);
   };
 
-  // Randomize mole appearance during the game
   useEffect(() => {
     if (isGameStarted) {
       const moleInterval = setInterval(() => {
@@ -68,7 +66,6 @@ function Board({ isGameStarted, score, setScore, setHitRate }) {
     }
   }, [isGameStarted]);
 
-  // Handle mole clicks
   const handleClick = (index) => {
     const newMoles = [...moles];
     if (newMoles[index]) {
@@ -78,7 +75,7 @@ function Board({ isGameStarted, score, setScore, setHitRate }) {
       const appearTime = moleAppearTime[index];
 
       if (appearTime) {
-        const reactionTime = currentTime - appearTime; // Calculate reaction time
+        const reactionTime = currentTime - appearTime;
         setReactionTimes((prevTimes) => [...prevTimes, reactionTime]);
       }
     }
@@ -86,7 +83,6 @@ function Board({ isGameStarted, score, setScore, setHitRate }) {
     setMoles(newMoles);
   };
 
-  // Calculate the average hit rate (average reaction time) whenever reaction times update
   useEffect(() => {
     if (reactionTimes.length > 0) {
       const totalReactionTime = reactionTimes.reduce(

@@ -51,7 +51,7 @@ function HighScoreModal({
                 <li key={index} className="list-grid">
                   <span>{index + 1}.</span>
                   <span className="left">{player.playerName}:</span>
-                  <span className="right">{player.hitRate} ms</span>
+                  <span className="right">{player.hitRate.toFixed(2)} ms</span>
                 </li>
               ))}
             </ul>
